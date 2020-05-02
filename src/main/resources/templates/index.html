@@ -9,6 +9,18 @@
     <title>home</title>
 </head>
 <body>
+        <button class="btn btn-lg btn-primary" type="button" onclick="signIn()"> Login </button>
+        <button class="btn btn-lg btn-danger" type="button" onclick="toRegister()">Register</button>
     <h1>welcome!</h1>
+
 </body>
+
+<script>
+    function toRegister(){
+        window.location.href = "register"
+    }
+    function signIn() {
+        window.location.href = "login"
+    }
+</script>
 </html>

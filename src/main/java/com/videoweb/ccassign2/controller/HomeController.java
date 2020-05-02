@@ -13,4 +13,15 @@ public class HomeController {
     public String homePage(){
         return "index";
     }
+
+    @RequestMapping("/register")
+    public String register(){
+        return "user/register";
+    }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "user/login";
+    }
+
 }

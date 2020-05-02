@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.4.1/js/bootstrap.js"></script>
+    <title>register</title>
+</head>
+<body>
+
+<div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <form class="form-signUp" id="signUpForm">
+                <div class="text-center mb-4">
+                    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputUsername">Username</label>
+                    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmInputPassword">Confirm Password</label>
+                    <input type="password" id="confirmInputPassword" class="form-control" placeholder="Confirm Password" required>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="register()">Sign Up</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function register() {
+        var password = document.getElementById("inputPassword").value;
+        var confirmPassword = document.getElementById("confirmInputPassword").value;
+        if(password==confirmPassword) {
+            var username = document.getElementById("inputUsername").value;
+            var email = document.getElementById("inputEmail").value;
+            var json = JSON.stringify({
+                "username": username,
+                "password": password,
+                "email": email
+            });
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: '/user/register',
+                contentType: "application/json",
+                data: json,
+                success:function (data) {
+                    if(data.success)
+                    {
+                        alert(data.message);
+                        window.location.href='/index';
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                }
+            });
+        }
+        else
+        {
+            alert("The password and confirm password do not match");
+        }
+    }
+</script>
+
+</body>
+</html>
