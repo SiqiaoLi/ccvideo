@@ -24,7 +24,7 @@ public class User {
     private String password;
 
 
-    public String getUserId() {
+    public String getUserIdand() {
         return userId;
     }
 
